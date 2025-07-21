@@ -2,7 +2,12 @@ import React, { useEffect, useRef } from 'react';
 // @ts-ignore - react-cytoscapejs doesn't have type definitions
 import CytoscapeComponent from 'react-cytoscapejs';
 import cytoscape from 'cytoscape';
+// @ts-ignore - cytoscape-fcose doesn't have type definitions
+import fcose from 'cytoscape-fcose';
 import { elements } from './graphData';
+
+// Register the fcose extension
+cytoscape.use(fcose);
 
 const CytoscapeGraph: React.FC = () => {
   const cyRef = useRef<cytoscape.Core | null>(null);
@@ -48,6 +53,8 @@ const CytoscapeGraph: React.FC = () => {
         'text-wrap': 'wrap',
         'transition-property': 'opacity',
         'transition-duration': '0.3s',
+        'width': '60px',
+        'height': '60px',
       },
     },
     {
@@ -71,8 +78,8 @@ const CytoscapeGraph: React.FC = () => {
         'font-size': '16px', 
         'font-weight': 'bold', 
         'shape': 'round-rectangle', 
-        'width': 'label', 
-        'height': 'label', 
+        'width': '120px', 
+        'height': '80px', 
         'padding': '15px' 
       } 
     },
@@ -82,7 +89,9 @@ const CytoscapeGraph: React.FC = () => {
         'background-color': '#dbeafe', 
         'color': '#1e40af', 
         'text-outline-color': '#93c5fd', 
-        'shape': 'ellipse' 
+        'shape': 'ellipse',
+        'width': '80px',
+        'height': '60px',
       } 
     },
     { 
@@ -92,7 +101,9 @@ const CytoscapeGraph: React.FC = () => {
         'color': '#92400e', 
         'text-outline-color': '#fcd34d', 
         'shape': 'round-tag', 
-        'font-style': 'italic' 
+        'font-style': 'italic',
+        'width': '100px',
+        'height': '70px',
       } 
     },
     { 
@@ -128,7 +139,13 @@ const CytoscapeGraph: React.FC = () => {
     <CytoscapeComponent
       elements={CytoscapeComponent.normalizeElements(elements)}
       style={{ width: '100%', height: '100%' }}
-      layout={{ name: 'preset' }}
+      layout={{
+        name: 'fcose',
+        animate: true,
+        fit: true,
+        padding: 50,
+        randomize: true,
+      }}
       stylesheet={stylesheet}
       cy={(cy: cytoscape.Core) => { cyRef.current = cy; }}
     />
