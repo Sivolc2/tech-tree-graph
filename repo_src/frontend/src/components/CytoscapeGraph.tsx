@@ -16,121 +16,158 @@ const CytoscapeGraph: React.FC = () => {
     const cy = cyRef.current;
     if (!cy) return;
 
-    const handleMouseOver = (e: any) => {
-      const targetNode = e.target;
-      const neighborhood = targetNode.neighborhood();
+    // A helper function to manage highlighting
+    const highlightNeighborhood = (node: cytoscape.NodeSingular) => {
+      const neighborhood = node.neighborhood().union(node);
+      if (node.parent().length > 0) {
+        neighborhood.union(node.parent());
+      }
+      
+      cy.elements().addClass('faded');
+      neighborhood.removeClass('faded').addClass('highlighted');
 
-      cy.elements().not(neighborhood).not(targetNode).addClass('faded');
-      targetNode.addClass('highlighted');
-      neighborhood.addClass('highlighted');
+      // For compound parents, also highlight their children
+      if (node.isParent()) {
+        node.children().removeClass('faded').addClass('highlighted');
+      }
     };
 
-    const handleMouseOut = () => {
+    const clearHighlight = () => {
       cy.elements().removeClass('faded highlighted');
     };
 
-    cy.on('mouseover', 'node[type="tech"]', handleMouseOver);
-    cy.on('mouseout', 'node[type="tech"]', handleMouseOut);
+    // Events for technologies and books
+    cy.on('mouseover', 'node[type="tech"], node[type="book"]', (e) => {
+      highlightNeighborhood(e.target);
+    });
+    cy.on('mouseout', 'node[type="tech"], node[type="book"]', clearHighlight);
+
+    // Events for categories (compound parents)
+    cy.on('mouseover', 'node[type="category"]', (e) => {
+      const neighborhood = e.target.union(e.target.descendants()).union(e.target.connectedEdges());
+      cy.elements().addClass('faded');
+      neighborhood.removeClass('faded').addClass('highlighted');
+    });
+    cy.on('mouseout', 'node[type="category"]', clearHighlight);
+
+    // Handle tapping on nodes for mobile/touch
+    cy.on('tap', 'node', (e) => {
+      if (e.target.hasClass('highlighted') && !e.target.isParent()) {
+        clearHighlight();
+      } else {
+        clearHighlight(); // Clear previous highlights
+        if (e.target.isParent()) {
+            const neighborhood = e.target.union(e.target.descendants()).union(e.target.connectedEdges());
+            cy.elements().addClass('faded');
+            neighborhood.removeClass('faded').addClass('highlighted');
+        } else {
+            highlightNeighborhood(e.target);
+        }
+      }
+    });
+
+    cy.on('tap', (e) => e.target === cy && clearHighlight());
 
     return () => {
-      cy.off('mouseover', 'node[type="tech"]', handleMouseOver);
-      cy.off('mouseout', 'node[type="tech"]', handleMouseOut);
+      cy.off('mouseover').off('mouseout').off('tap');
     };
-  }, []);
+  }, []); // The effect should run only once
 
   const stylesheet: any[] = [
     {
       selector: 'node',
       style: {
-        'background-color': '#666',
         'label': 'data(label)',
         'text-valign': 'center',
         'text-halign': 'center',
-        'color': '#fff',
-        'text-outline-width': 2,
-        'text-outline-color': '#888',
-        'font-size': '12px',
         'text-wrap': 'wrap',
-        'transition-property': 'opacity',
+        'text-max-width': '100px',
+        'font-family': "'Share Tech Mono', monospace",
+        'transition-property': 'background-color, border-color, opacity, box-shadow',
         'transition-duration': '0.3s',
-        'width': '60px',
-        'height': '60px',
       },
     },
     {
       selector: 'edge',
       style: {
-        'width': 2,
-        'line-color': '#ccc',
-        'target-arrow-color': '#ccc',
+        'width': 1.5,
+        'line-color': '#241468', // Dark purple
+        'target-arrow-color': '#241468',
         'target-arrow-shape': 'triangle',
         'curve-style': 'bezier',
-        'transition-property': 'line-color, target-arrow-color, opacity',
+        'transition-property': 'line-color, target-arrow-color, opacity, width',
         'transition-duration': '0.3s',
       },
     },
     { 
       selector: 'node[type="category"]', 
       style: { 
-        'background-color': '#4b5563', 
-        'color': 'white', 
-        'text-outline-color': '#6b7280', 
-        'font-size': '16px', 
+        'background-color': '#0F084B', // Even darker blue/purple
+        'background-opacity': 0.5,
+        'border-width': 2,
+        'border-color': '#922D50', // Magenta-ish
+        'color': '#efefef', 
+        'font-size': '20px', 
         'font-weight': 'bold', 
-        'shape': 'round-rectangle', 
-        'width': '120px', 
-        'height': '80px', 
-        'padding': '15px' 
+        'text-valign': 'top',
+        'text-halign': 'center',
+        'padding': '20px',
       } 
     },
     { 
       selector: 'node[type="tech"]', 
       style: { 
-        'background-color': '#dbeafe', 
-        'color': '#1e40af', 
-        'text-outline-color': '#93c5fd', 
-        'shape': 'ellipse',
-        'width': '80px',
-        'height': '60px',
+        'background-color': '#241468', // Purple
+        'border-width': 2,
+        'border-color': '#00f6ff', // Cyan
+        'color': '#fff', 
+        'font-size': '14px',
+        'shape': 'hexagon',
+        'width': '100px',
+        'height': '80px',
       } 
     },
     { 
       selector: 'node[type="book"]', 
       style: { 
-        'background-color': '#fef3c7', 
-        'color': '#92400e', 
-        'text-outline-color': '#fcd34d', 
+        'background-color': '#922D50', // Magenta/red
+        'border-width': 2,
+        'border-color': '#fefefe',
+        'color': '#fff', 
         'shape': 'round-tag', 
-        'font-style': 'italic',
-        'width': '100px',
-        'height': '70px',
+        'font-size': '12px',
+        'width': '120px',
+        'height': '80px',
       } 
     },
     { 
       selector: '.faded', 
       style: { 
-        'opacity': 0.15 
+        'opacity': 0.1 
       } 
     },
     { 
       selector: '.highlighted', 
       style: { 
-        'opacity': 1 
+        'opacity': 1,
       } 
     },
     {
         selector: 'edge.highlighted',
         style: {
-          'line-color': '#fcd34d',
-          'target-arrow-color': '#fcd34d',
-          'width': 3,
+          'line-color': '#ffc700', // Gold/yellow highlight
+          'target-arrow-color': '#ffc700',
+          'width': 4,
+          'z-index': 10,
         }
     },
     {
         selector: 'node.highlighted',
         style: {
-            'border-width': '3px',
-            'border-color': '#fcd34d',
+            'border-width': '4px',
+            'border-color': '#ffc700',
+            'box-shadow': '0 0 15px #ffc700',
+            'z-index': 10,
         }
     }
   ];
@@ -139,11 +176,25 @@ const CytoscapeGraph: React.FC = () => {
     <CytoscapeComponent
       elements={CytoscapeComponent.normalizeElements(elements)}
       style={{ width: '100%', height: '100%' }}
+      // @ts-ignore
       layout={{
         name: 'fcose',
+        // Quality options
+        quality: 'proof',
+        // Animation options
         animate: true,
+        animationDuration: 1000,
+        // Layout tweaking
         fit: true,
         padding: 50,
+        // Node separation
+        nodeRepulsion: 4500,
+        idealEdgeLength: 100,
+        // Nesting options for compound nodes
+        nestingFactor: 1.2,
+        // Forcing options
+        gravity: 0.25,
+        // Randomize node positions on init
         randomize: true,
       }}
       stylesheet={stylesheet}

@@ -1,10 +1,10 @@
 import cytoscape from 'cytoscape';
 
 const categories = [
-  { id: 'cat-1', name: 'FIRST CONTACT & ALIEN WORLDS' },
-  { id: 'cat-2', name: 'SPACE OPERA & GALACTIC CIVILIZATION' },
-  { id: 'cat-3', name: 'PHYSICS, SPACETIME & ENGINEERING' },
-  { id: 'cat-4', name: 'CONSCIOUSNESS, AI & POST-HUMANISM' },
+  { id: 'cat-1', name: 'FIRST CONTACT\n& ALIEN WORLDS' },
+  { id: 'cat-2', name: 'SPACE OPERA\n& GALACTIC CIVILIZATION' },
+  { id: 'cat-3', name: 'PHYSICS, SPACETIME\n& ENGINEERING' },
+  { id: 'cat-4', name: 'CONSCIOUSNESS, AI\n& POST-HUMANISM' },
 ];
 
 const technologies = [
@@ -68,32 +68,21 @@ categories.forEach(cat => {
   });
 });
 
-// --- Process Technologies ---
+// --- Process Technologies as child nodes ---
 technologies.forEach(tech => {
   elements.push({
     group: 'nodes',
-    data: { id: tech.id, label: tech.name, type: 'tech' }
-  });
-
-  // Edge from Category to Tech
-  elements.push({
-    group: 'edges',
-    data: {
-      id: `e-${tech.category}-${tech.id}`,
-      source: tech.category,
-      target: tech.id,
-    }
+    data: { id: tech.id, label: tech.name, type: 'tech', parent: tech.category } // Set parent
   });
 });
 
-// --- Process Books ---
+// --- Process Books and their edges to technologies ---
 books.forEach(book => {
   elements.push({
     group: 'nodes',
     data: { id: book.id, label: `${book.title}\n- ${book.author}`, type: 'book' }
   });
 
-  // Edges from Tech to Book
   book.techs.forEach(techId => {
     elements.push({
       group: 'edges',
