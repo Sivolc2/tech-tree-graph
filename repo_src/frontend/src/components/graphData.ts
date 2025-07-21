@@ -1,4 +1,4 @@
-import { Node, Edge } from 'reactflow';
+import cytoscape from 'cytoscape';
 
 const categories = [
   { id: 'cat-1', name: 'FIRST CONTACT & ALIEN WORLDS', position: { x: 50, y: 400 } },
@@ -58,79 +58,53 @@ const books = [
   { id: 'book-diaspora', title: 'Diaspora', author: 'Greg Egan', techs: ['tech-digital-consciousness', 'tech-jump-drive', 'tech-megastructures', 'tech-virtual-reality'], position: { x: 1050, y: 1200 } },
 ];
 
-export const initialNodes: Node[] = [];
-export const initialEdges: Edge[] = [];
+export const elements: cytoscape.ElementDefinition[] = [];
 
 // --- Process Categories ---
 categories.forEach(cat => {
-  initialNodes.push({
-    id: cat.id,
-    type: 'category',
-    data: { label: cat.name },
-    position: cat.position,
-    draggable: true,
+  elements.push({
+    group: 'nodes',
+    data: { id: cat.id, label: cat.name, type: 'category' },
+    position: cat.position
   });
 });
 
 // --- Process Technologies ---
 technologies.forEach(tech => {
-  initialNodes.push({
-    id: tech.id,
-    type: 'tech',
-    data: { label: tech.name },
-    position: tech.position,
-    draggable: true,
+  elements.push({
+    group: 'nodes',
+    data: { id: tech.id, label: tech.name, type: 'tech' },
+    position: tech.position
   });
 
   // Edge from Category to Tech
-  initialEdges.push({
-    id: `e-${tech.category}-${tech.id}`,
-    source: tech.category,
-    target: tech.id,
-    type: 'smoothstep',
+  elements.push({
+    group: 'edges',
+    data: {
+      id: `e-${tech.category}-${tech.id}`,
+      source: tech.category,
+      target: tech.id,
+    }
   });
 });
 
 // --- Process Books ---
 books.forEach(book => {
-  initialNodes.push({
-    id: book.id,
-    type: 'book',
-    data: { label: book.title, author: book.author },
-    position: book.position,
-    draggable: true,
+  elements.push({
+    group: 'nodes',
+    data: { id: book.id, label: `${book.title}\n- ${book.author}`, type: 'book' },
+    position: book.position
   });
 
   // Edges from Tech to Book
   book.techs.forEach(techId => {
-    initialEdges.push({
-      id: `e-${techId}-${book.id}`,
-      source: techId,
-      target: book.id,
-      type: 'smoothstep',
+    elements.push({
+      group: 'edges',
+      data: {
+        id: `e-${techId}-${book.id}`,
+        source: techId,
+        target: book.id,
+      }
     });
   });
-});
-
-const defaultNodes = [
-  {
-    id: 'default-1',
-    type: 'input',
-    data: { label: 'No data loaded' },
-    position: { x: 250, y: 5 },
-  },
-  {
-    id: 'default-2',
-    data: { label: 'Drag data file here' },
-    position: { x: 100, y: 100 },
-  },
-];
-
-const defaultEdges = [{ id: 'd-e1-2', source: 'default-1', target: 'default-2' }];
-
-// If there's no data, show a default message.
-// This part is not strictly necessary since we are hardcoding the data, but it's good practice.
-if (initialNodes.length === 0) {
-  initialNodes.push(...defaultNodes);
-  initialEdges.push(...defaultEdges);
-} 
+}); 

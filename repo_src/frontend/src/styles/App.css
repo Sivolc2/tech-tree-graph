@@ -1,6 +1,6 @@
 .graph-container {
   width: 100%;
-  height: 100vh;
+  height: 95vh; /* Give a bit of space */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -23,47 +23,4 @@
 .graph-header p {
   margin: 0.25rem 0 0;
   color: #9ca3af; /* cool-gray-400 */
-}
-
-.react-flow .react-flow__node {
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 8px;
-  border-width: 2px;
-  padding: 10px 15px;
-  font-size: 14px;
-  text-align: center;
-}
-
-.react-flow .react-flow__edge {
-  transition: opacity 0.3s ease-in-out;
-}
-
-.react-flow .faded {
-  opacity: 0.15;
-}
-
-.react-flow .highlight {
-  opacity: 1;
-}
-
-/* Custom Node Styles are in CustomNode.tsx via tailwind-like classes */
-.node-category {
-  font-size: 1.25rem;
-  padding: 1rem 1.5rem;
-  background-color: #4b5563;
-  color: white;
-  border: 2px solid #6b7280;
-}
-
-.node-tech {
-  background-color: #dbeafe;
-  color: #1e40af;
-  border: 2px solid #93c5fd;
-}
-
-.node-book {
-  background-color: #fef3c7;
-  color: #92400e;
-  border: 2px solid #fcd34d;
-  font-style: italic;
 } 
