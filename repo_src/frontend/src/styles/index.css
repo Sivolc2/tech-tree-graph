@@ -28,7 +28,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  text-align: center;
 }
 
 /* Keep other styles for potential use if needed */
@@ -60,14 +59,4 @@ button:focus-visible {
 
 .card {
   padding: 2em;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 } 

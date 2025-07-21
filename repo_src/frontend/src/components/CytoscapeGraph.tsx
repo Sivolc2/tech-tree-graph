@@ -82,8 +82,7 @@ const CytoscapeGraph: React.FC = () => {
         'text-halign': 'center',
         'text-wrap': 'wrap',
         'text-max-width': '100px',
-        'font-family': "'Share Tech Mono', monospace",
-        'transition-property': 'background-color, border-color, opacity, box-shadow',
+        'transition-property': 'background-color, border-color, opacity',
         'transition-duration': '0.3s',
       },
     },
@@ -166,7 +165,6 @@ const CytoscapeGraph: React.FC = () => {
         style: {
             'border-width': '4px',
             'border-color': '#ffc700',
-            'box-shadow': '0 0 15px #ffc700',
             'z-index': 10,
         }
     }
