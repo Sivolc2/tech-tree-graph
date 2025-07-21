@@ -30,8 +30,7 @@ else:
 # Import database setup function AFTER loading env vars,
 # as db connection might depend on them.
 from repo_src.backend.database.setup import init_db
-from repo_src.backend.database import models, connection # For example endpoints
-from repo_src.backend.functions.items import router as items_router # Import the items router
+from repo_src.backend.database import connection # For example endpoints
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -56,8 +55,7 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
-# Include the items router
-app.include_router(items_router)
+
 
 @app.get("/")
 async def read_root():

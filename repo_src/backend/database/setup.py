@@ -1,6 +1,5 @@
 from repo_src.backend.database.connection import engine, Base
-# Import all models here so Base has them registered
-from repo_src.backend.database import models # noqa Ensures models.py is loaded and Item model is registered with Base
+# No models to import since we removed CRUD functionality
 
 def init_db():
     """
