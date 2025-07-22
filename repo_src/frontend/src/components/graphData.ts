@@ -8,54 +8,85 @@ const categories = [
 ];
 
 const technologies = [
-  // Contact
+  // --- CATEGORY 1: FIRST CONTACT & ALIEN WORLDS ---
   { id: 'tech-xenobiology', name: 'Xenobiology', category: 'cat-1' },
-  { id: 'tech-alien-domestication', name: 'Alien Domestication', category: 'cat-1' },
-  { id: 'tech-world-shaper', name: 'World Shaper', category: 'cat-1' },
+  { id: 'tech-protomolecule', name: 'Protomolecule', category: 'cat-1' },
+  { id: 'tech-sentient-ocean', name: 'Sentient Ocean', category: 'cat-1' },
+  { id: 'tech-overlords', name: 'Benevolent Overlords', category: 'cat-1' },
+  { id: 'tech-neutron-star-life', name: 'Neutron Star Life', category: 'cat-1' },
+  { id: 'tech-group-minds', name: 'Group Minds', category: 'cat-1' },
+  { id: 'tech-convergent-evolution', name: 'Convergent Evolution', category: 'cat-1' },
 
-  // Space Opera
-  { id: 'tech-ftl', name: 'FTL', category: 'cat-2' },
-  { id: 'tech-jump-drive', name: 'Jump Drive', category: 'cat-2' },
-  { id: 'tech-hyper-shields', name: 'Hyper Shields', category: 'cat-2' },
-  { id: 'tech-megastructures', name: 'Megastructures', category: 'cat-2' },
-  { id: 'tech-lasers', name: 'Lasers', category: 'cat-2' },
+  // --- CATEGORY 2: SPACE OPERA & GALACTIC CIVILIZATION ---
+  { id: 'tech-ftl', name: 'FTL Travel', category: 'cat-2' },
+  { id: 'tech-farcasters', name: 'Farcasters', category: 'cat-2' },
+  { id: 'tech-psychohistory', name: 'Psychohistory', category: 'cat-2' },
+  { id: 'tech-galactic-empire', name: 'Galactic Empire', category: 'cat-2' },
+  { id: 'tech-inhibitors', name: 'Inhibitor Plague', category: 'cat-2' },
+  { id: 'tech-variable-physics', name: 'Variable Physics Zones', category: 'cat-2' },
+  { id: 'tech-station-politics', name: 'Inter-Station Politics', category: 'cat-2' },
 
-  // Physics
+  // --- CATEGORY 3: PHYSICS, SPACETIME & ENGINEERING ---
   { id: 'tech-terraforming', name: 'Terraforming', category: 'cat-3' },
-  { id: 'tech-planetary-shields', name: 'Planetary Shields', category: 'cat-3' },
+  { id: 'tech-megastructures', name: 'Megastructures', category: 'cat-3' },
   { id: 'tech-dimensional-engineering', name: 'Dimensional Engineering', category: 'cat-3' },
+  { id: 'tech-sophons', name: 'Sophons', category: 'cat-3' },
+  { id: 'tech-cryosleep', name: 'Cryosleep', category: 'cat-3' },
+  { id: 'tech-epstein-drive', name: 'Epstein Drive', category: 'cat-3' },
+  { id: 'tech-neutronium-matter', name: 'Neutronium Matter', category: 'cat-3' },
+  { id: 'tech-ring-worlds', name: 'Ring Worlds', category: 'cat-3' },
+  { id: 'tech-dyson-sphere', name: 'Dyson Spheres', category: 'cat-3' },
+  { id: 'tech-relativistic-warfare', name: 'Relativistic Warfare', category: 'cat-3' },
+  { id: 'tech-temporal-weapon', name: 'Temporal Weaponry', category: 'cat-3' },
+  { id: 'tech-stillsuits', name: 'Stillsuits', category: 'cat-3' },
+  { id: 'tech-hyper-shields', name: 'Hyper Shields', category: 'cat-3' },
+  { id: 'tech-planetary-shields', name: 'Planetary Shields', category: 'cat-3' },
+  { id: 'tech-jump-drive', name: 'Jump Drives', category: 'cat-3' },
 
-  // Consciousness
+  // --- CATEGORY 4: CONSCIOUSNESS, AI & POST-HUMANISM ---
   { id: 'tech-sapient-ai', name: 'Sapient AI', category: 'cat-4' },
   { id: 'tech-digital-consciousness', name: 'Digital Consciousness', category: 'cat-4' },
   { id: 'tech-nanotechnology', name: 'Nanotechnology', category: 'cat-4' },
   { id: 'tech-neural-implants', name: 'Neural Implants', category: 'cat-4' },
   { id: 'tech-psionic-theory', name: 'Psionic Theory', category: 'cat-4' },
   { id: 'tech-virtual-reality', name: 'Virtual Reality', category: 'cat-4' },
-  { id: 'tech-robotics', name: 'Robotics', category: 'cat-4' },
   { id: 'tech-gene-tailoring', name: 'Gene Tailoring', category: 'cat-4' },
-  { id: 'tech-self-evolving-logic', name: 'Self-Evolving Logic', category: 'cat-4' },
-  { id: 'tech-exotic-materials', name: 'Exotic Materials', category: 'cat-3' },
-  { id: 'tech-cryostasis', name: 'Cryostasis', category: 'cat-3' },
+  { id: 'tech-imago-machine', name: 'Imago Machine', category: 'cat-4' },
+  { id: 'tech-cruciform', name: 'Cruciform Resurrection', category: 'cat-4' },
+  { id: 'tech-culture-minds', name: 'The Culture Minds', category: 'cat-4' },
+  { id: 'tech-gothic-tech', name: 'Gothic Tech', category: 'cat-4' },
+  { id: 'tech-dust-theory', name: 'Dust Theory', category: 'cat-4' },
+  { id: 'tech-singularity', name: 'The Singularity', category: 'cat-4' },
+  { id: 'tech-the-polis', name: 'The Polis', category: 'cat-4' },
+  { id: 'tech-matter-compilers', name: 'Matter Compilers', category: 'cat-4' },
+  { id: 'tech-uplift-virus', name: 'Uplift Virus', category: 'cat-4' },
 ];
 
 const books = [
-  { id: 'book-phlebas', title: 'Consider Phlebas', author: 'Iain M. Banks', techs: ['tech-sapient-ai', 'tech-hyper-shields', 'tech-megastructures', 'tech-neural-implants'] },
-  { id: 'book-excession', title: 'Excession', author: 'Iain M. Banks', techs: ['tech-sapient-ai', 'tech-jump-drive', 'tech-exotic-materials', 'tech-digital-consciousness'] },
-  { id: 'book-rainbows', title: 'Rainbows End', author: 'Vernor Vinge', techs: ['tech-virtual-reality', 'tech-neural-implants', 'tech-nanotechnology'] },
-  { id: 'book-childhood', title: "Childhood's End", author: 'Arthur C. Clarke', techs: ['tech-psionic-theory', 'tech-world-shaper', 'tech-alien-domestication'] },
-  { id: 'book-de', title: "Death's End", author: 'Cixin Liu', techs: ['tech-jump-drive', 'tech-ftl', 'tech-megastructures', 'tech-dimensional-engineering'] },
-  { id: 'book-3bp', title: 'The Three-Body Problem', author: 'Cixin Liu', techs: ['tech-ftl', 'tech-virtual-reality', 'tech-dimensional-engineering'] },
-  { id: 'book-hyperion', title: 'Hyperion', author: 'Dan Simmons', techs: ['tech-sapient-ai', 'tech-jump-drive', 'tech-terraforming', 'tech-cryostasis'] },
-  { id: 'book-accel', title: 'Accelerando', author: 'Charles Stross', techs: ['tech-digital-consciousness', 'tech-nanotechnology', 'tech-self-evolving-logic'] },
-  { id: 'book-pc', title: 'Permutation City', author: 'Greg Egan', techs: ['tech-digital-consciousness', 'tech-virtual-reality', 'tech-self-evolving-logic'] },
-  { id: 'book-solaris', title: 'Solaris', author: 'Stanislaw Lem', techs: ['tech-xenobiology', 'tech-psionic-theory'] },
-  { id: 'book-foundation', title: 'Foundation', author: 'Isaac Asimov', techs: ['tech-planetary-shields', 'tech-lasers', 'tech-ftl'] },
-  { id: 'book-dune', title: 'Dune', author: 'Frank Herbert', techs: ['tech-psionic-theory', 'tech-terraforming', 'tech-gene-tailoring'] },
-  { id: 'book-da', title: 'The Diamond Age', author: 'Neal Stephenson', techs: ['tech-nanotechnology', 'tech-sapient-ai', 'tech-robotics'] },
-  { id: 'book-sc', title: 'Snow Crash', author: 'Neal Stephenson', techs: ['tech-virtual-reality', 'tech-neural-implants'] },
-  { id: 'book-afutd', title: 'A Fire Upon the Deep', author: 'Vernor Vinge', techs: ['tech-sapient-ai', 'tech-ftl', 'tech-xenobiology'] },
-  { id: 'book-diaspora', title: 'Diaspora', author: 'Greg Egan', techs: ['tech-digital-consciousness', 'tech-jump-drive', 'tech-megastructures', 'tech-virtual-reality'] },
+  // Classics
+  { id: 'book-dune', title: 'Dune', author: 'Frank Herbert', techs: ['tech-psionic-theory', 'tech-terraforming', 'tech-gene-tailoring', 'tech-stillsuits'] },
+  { id: 'book-foundation', title: 'Foundation', author: 'Isaac Asimov', techs: ['tech-psychohistory', 'tech-galactic-empire', 'tech-planetary-shields', 'tech-ftl'] },
+  { id: 'book-solaris', title: 'Solaris', author: 'Stanislaw Lem', techs: ['tech-sentient-ocean', 'tech-xenobiology', 'tech-psionic-theory'] },
+  { id: 'book-childhood', title: "Childhood's End", author: 'Arthur C. Clarke', techs: ['tech-overlords', 'tech-psionic-theory', 'tech-convergent-evolution'] },
+
+  // Modern Epics
+  { id: 'book-hyperion', title: 'Hyperion', author: 'Dan Simmons', techs: ['tech-farcasters', 'tech-cruciform', 'tech-temporal-weapon', 'tech-sapient-ai'] },
+  { id: 'book-3bp', title: 'The Three-Body Problem', author: 'Cixin Liu', techs: ['tech-sophons', 'tech-virtual-reality', 'tech-dimensional-engineering', 'tech-ftl'] },
+  { id: 'book-afutd', title: 'A Fire Upon the Deep', author: 'Vernor Vinge', techs: ['tech-variable-physics', 'tech-group-minds', 'tech-sapient-ai', 'tech-ftl'] },
+  { id: 'book-revelation', title: 'Revelation Space', author: 'Alastair Reynolds', techs: ['tech-inhibitors', 'tech-gothic-tech', 'tech-cryosleep', 'tech-relativistic-warfare'] },
+  { id: 'book-leviathan', title: 'Leviathan Wakes', author: 'James S.A. Corey', techs: ['tech-protomolecule', 'tech-epstein-drive', 'tech-station-politics'] },
+  { id: 'book-children-of-time', title: 'Children of Time', author: 'Adrian Tchaikovsky', techs: ['tech-uplift-virus', 'tech-convergent-evolution', 'tech-terraforming'] },
+  { id: 'book-memory-empire', title: 'A Memory Called Empire', author: 'Arkady Martine', techs: ['tech-imago-machine', 'tech-galactic-empire', 'tech-station-politics'] },
+
+  // Post-Human & Consciousness
+  { id: 'book-phlebas', title: 'Consider Phlebas', author: 'Iain M. Banks', techs: ['tech-culture-minds', 'tech-sapient-ai', 'tech-megastructures', 'tech-hyper-shields'] },
+  { id: 'book-da', title: 'The Diamond Age', author: 'Neal Stephenson', techs: ['tech-nanotechnology', 'tech-matter-compilers', 'tech-sapient-ai', 'tech-virtual-reality'] },
+  { id: 'book-accel', title: 'Accelerando', author: 'Charles Stross', techs: ['tech-singularity', 'tech-digital-consciousness', 'tech-nanotechnology'] },
+  { id: 'book-pc', title: 'Permutation City', author: 'Greg Egan', techs: ['tech-digital-consciousness', 'tech-dust-theory', 'tech-virtual-reality'] },
+  { id: 'book-diaspora', title: 'Diaspora', author: 'Greg Egan', techs: ['tech-the-polis', 'tech-digital-consciousness', 'tech-jump-drive', 'tech-dimensional-engineering'] },
+
+  // Hard Physics & Xenobiology
+  { id: 'book-dragons-egg', title: 'Dragon\'s Egg', author: 'Robert L. Forward', techs: ['tech-neutron-star-life', 'tech-neutronium-matter', 'tech-relativistic-warfare', 'tech-xenobiology'] },
 ];
 
 export const elements: cytoscape.ElementDefinition[] = [];

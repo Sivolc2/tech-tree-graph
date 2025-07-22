@@ -173,12 +173,14 @@ const CytoscapeGraph: React.FC = () => {
         animationDuration: 1000,
         // Layout tweaking
         fit: true,
-        padding: 50,
-        // Node separation
-        nodeRepulsion: 4500,
-        idealEdgeLength: 100,
+        padding: 80, // Increased from 50
+        // Node separation - increased for more spacing
+        nodeRepulsion: 8000, // Increased from 4500
+        idealEdgeLength: 150, // Increased from 100
+        // Additional spacing parameters
+        nodeSeparation: 100, // Added explicit node separation
         // Forcing options
-        gravity: 0.25,
+        gravity: 0.15, // Reduced from 0.25 for less clustering
         // Randomize node positions on init
         randomize: true,
       }}
