@@ -18,51 +18,41 @@ const CytoscapeGraph: React.FC = () => {
 
     // A helper function to manage highlighting
     const highlightNeighborhood = (node: cytoscape.NodeSingular) => {
-      const neighborhood = node.neighborhood().union(node);
-      if (node.parent().length > 0) {
-        neighborhood.union(node.parent());
-      }
+      // Clear all existing classes first
+      cy.elements().removeClass('faded highlighted');
       
-      cy.elements().addClass('faded');
-      neighborhood.removeClass('faded').addClass('highlighted');
-
-      // For compound parents, also highlight their children
-      if (node.isParent()) {
-        node.children().removeClass('faded').addClass('highlighted');
-      }
+      // Get all connected elements (neighborhood + the node itself)
+      const neighborhood = node.neighborhood();
+      const toHighlight = neighborhood.union(node);
+      
+      // Get everything that should be faded (everything NOT in toHighlight)
+      const toFade = cy.elements().not(toHighlight);
+      
+      // Apply the classes
+      toFade.addClass('faded');
+      toHighlight.addClass('highlighted');
+      
+      // Double-check: ensure the original node is definitely highlighted
+      node.addClass('highlighted').removeClass('faded');
     };
 
     const clearHighlight = () => {
       cy.elements().removeClass('faded highlighted');
     };
 
-    // Events for technologies and books
-    cy.on('mouseover', 'node[type="tech"], node[type="book"]', (e) => {
+    // Events for all node types
+    cy.on('mouseover', 'node', (e) => {
       highlightNeighborhood(e.target);
     });
-    cy.on('mouseout', 'node[type="tech"], node[type="book"]', clearHighlight);
-
-    // Events for categories (compound parents)
-    cy.on('mouseover', 'node[type="category"]', (e) => {
-      const neighborhood = e.target.union(e.target.descendants()).union(e.target.connectedEdges());
-      cy.elements().addClass('faded');
-      neighborhood.removeClass('faded').addClass('highlighted');
-    });
-    cy.on('mouseout', 'node[type="category"]', clearHighlight);
+    cy.on('mouseout', 'node', clearHighlight);
 
     // Handle tapping on nodes for mobile/touch
     cy.on('tap', 'node', (e) => {
-      if (e.target.hasClass('highlighted') && !e.target.isParent()) {
+      if (e.target.hasClass('highlighted')) {
         clearHighlight();
       } else {
         clearHighlight(); // Clear previous highlights
-        if (e.target.isParent()) {
-            const neighborhood = e.target.union(e.target.descendants()).union(e.target.connectedEdges());
-            cy.elements().addClass('faded');
-            neighborhood.removeClass('faded').addClass('highlighted');
-        } else {
-            highlightNeighborhood(e.target);
-        }
+        highlightNeighborhood(e.target);
       }
     });
 
@@ -81,7 +71,7 @@ const CytoscapeGraph: React.FC = () => {
         'text-valign': 'center',
         'text-halign': 'center',
         'text-wrap': 'wrap',
-        'text-max-width': '100px',
+        'text-max-width': '120px',
         'transition-property': 'background-color, border-color, opacity',
         'transition-duration': '0.3s',
       },
@@ -102,15 +92,14 @@ const CytoscapeGraph: React.FC = () => {
       selector: 'node[type="category"]', 
       style: { 
         'background-color': '#0F084B', // Even darker blue/purple
-        'background-opacity': 0.5,
-        'border-width': 2,
+        'border-width': 3,
         'border-color': '#922D50', // Magenta-ish
         'color': '#efefef', 
-        'font-size': '20px', 
+        'font-size': '18px', 
         'font-weight': 'bold', 
-        'text-valign': 'top',
-        'text-halign': 'center',
-        'padding': '20px',
+        'shape': 'round-rectangle',
+        'width': '180px',
+        'height': '120px',
       } 
     },
     { 
@@ -188,8 +177,6 @@ const CytoscapeGraph: React.FC = () => {
         // Node separation
         nodeRepulsion: 4500,
         idealEdgeLength: 100,
-        // Nesting options for compound nodes
-        nestingFactor: 1.2,
         // Forcing options
         gravity: 0.25,
         // Randomize node positions on init

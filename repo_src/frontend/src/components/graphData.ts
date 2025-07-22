@@ -60,7 +60,7 @@ const books = [
 
 export const elements: cytoscape.ElementDefinition[] = [];
 
-// --- Process Categories ---
+// --- Process Categories as regular nodes ---
 categories.forEach(cat => {
   elements.push({
     group: 'nodes',
@@ -68,11 +68,21 @@ categories.forEach(cat => {
   });
 });
 
-// --- Process Technologies as child nodes ---
+// --- Process Technologies as regular nodes ---
 technologies.forEach(tech => {
   elements.push({
     group: 'nodes',
-    data: { id: tech.id, label: tech.name, type: 'tech', parent: tech.category } // Set parent
+    data: { id: tech.id, label: tech.name, type: 'tech' }
+  });
+
+  // Add edge from Category to Tech
+  elements.push({
+    group: 'edges',
+    data: {
+      id: `e-${tech.category}-${tech.id}`,
+      source: tech.category,
+      target: tech.id,
+    }
   });
 });
 
