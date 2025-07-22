@@ -16,6 +16,9 @@ const technologies = [
   { id: 'tech-neutron-star-life', name: 'Neutron Star Life', category: 'cat-1' },
   { id: 'tech-group-minds', name: 'Group Minds', category: 'cat-1' },
   { id: 'tech-convergent-evolution', name: 'Convergent Evolution', category: 'cat-1' },
+  { id: 'tech-astrophage', name: 'Astrophage', category: 'cat-1' },
+  { id: 'tech-uplift-virus', name: 'Uplift Virus', category: 'cat-1' },
+  { id: 'tech-babel-fish', name: 'Babel Fish', category: 'cat-1' },
 
   // --- CATEGORY 2: SPACE OPERA & GALACTIC CIVILIZATION ---
   { id: 'tech-ftl', name: 'FTL Travel', category: 'cat-2' },
@@ -25,6 +28,10 @@ const technologies = [
   { id: 'tech-inhibitors', name: 'Inhibitor Plague', category: 'cat-2' },
   { id: 'tech-variable-physics', name: 'Variable Physics Zones', category: 'cat-2' },
   { id: 'tech-station-politics', name: 'Inter-Station Politics', category: 'cat-2' },
+  { id: 'tech-ansible', name: 'Ansible', category: 'cat-2' },
+  { id: 'tech-zero-g-combat', name: 'Zero-G Combat', category: 'cat-2' },
+  { id: 'tech-lunar-colony', name: 'Lunar Colony', category: 'cat-2' },
+  { id: 'tech-vogon-tech', name: 'Vogon Tech', category: 'cat-2' },
 
   // --- CATEGORY 3: PHYSICS, SPACETIME & ENGINEERING ---
   { id: 'tech-terraforming', name: 'Terraforming', category: 'cat-3' },
@@ -34,14 +41,22 @@ const technologies = [
   { id: 'tech-cryosleep', name: 'Cryosleep', category: 'cat-3' },
   { id: 'tech-epstein-drive', name: 'Epstein Drive', category: 'cat-3' },
   { id: 'tech-neutronium-matter', name: 'Neutronium Matter', category: 'cat-3' },
-  { id: 'tech-ring-worlds', name: 'Ring Worlds', category: 'cat-3' },
-  { id: 'tech-dyson-sphere', name: 'Dyson Spheres', category: 'cat-3' },
   { id: 'tech-relativistic-warfare', name: 'Relativistic Warfare', category: 'cat-3' },
   { id: 'tech-temporal-weapon', name: 'Temporal Weaponry', category: 'cat-3' },
   { id: 'tech-stillsuits', name: 'Stillsuits', category: 'cat-3' },
   { id: 'tech-hyper-shields', name: 'Hyper Shields', category: 'cat-3' },
   { id: 'tech-planetary-shields', name: 'Planetary Shields', category: 'cat-3' },
   { id: 'tech-jump-drive', name: 'Jump Drives', category: 'cat-3' },
+  { id: 'tech-bussard-ramjet', name: 'Bussard Ramjet', category: 'cat-3' },
+  { id: 'tech-time-dilation', name: 'Time Dilation', category: 'cat-3' },
+  { id: 'tech-quantum-graph-theory', name: 'Quantum Graph Theory', category: 'cat-3' },
+  { id: 'tech-novacene-physics', name: 'Novacene Physics', category: 'cat-3' },
+  { id: 'tech-habitat-engineering', name: 'Habitat Engineering', category: 'cat-3' },
+  { id: 'tech-physics-as-interface', name: 'Physics as an Interface', category: 'cat-3' },
+  { id: 'tech-arrow-of-time', name: 'Arrow of Time', category: 'cat-3' },
+  { id: 'tech-doctor-device', name: 'Molecular Disruption Device', category: 'cat-3' },
+  { id: 'tech-mass-driver', name: 'Mass Driver Catapult', category: 'cat-3' },
+  { id: 'tech-improbability-drive', name: 'Infinite Improbability Drive', category: 'cat-3' },
 
   // --- CATEGORY 4: CONSCIOUSNESS, AI & POST-HUMANISM ---
   { id: 'tech-sapient-ai', name: 'Sapient AI', category: 'cat-4' },
@@ -59,7 +74,16 @@ const technologies = [
   { id: 'tech-singularity', name: 'The Singularity', category: 'cat-4' },
   { id: 'tech-the-polis', name: 'The Polis', category: 'cat-4' },
   { id: 'tech-matter-compilers', name: 'Matter Compilers', category: 'cat-4' },
-  { id: 'tech-uplift-virus', name: 'Uplift Virus', category: 'cat-4' },
+  { id: 'tech-von-neumann-probes', name: 'Von Neumann Probes', category: 'cat-4' },
+  { id: 'tech-sapir-whorf', name: 'Sapir-Whorf Hypothesis', category: 'cat-4' },
+  { id: 'tech-nonlinear-time', name: 'Non-Linear Time Perception', category: 'cat-4' },
+  { id: 'tech-antimemetics', name: 'Antimemetics', category: 'cat-4' },
+  { id: 'tech-info-hazards', name: 'Information Hazards', category: 'cat-4' },
+  { id: 'tech-entropy-and-will', name: 'Entropy & Free Will', category: 'cat-4' },
+  { id: 'tech-emergent-ai', name: 'Emergent AI', category: 'cat-4' },
+  { id: 'tech-hypnopaedia', name: 'Hypnopaedia', category: 'cat-4' },
+  { id: 'tech-soma', name: 'Soma', category: 'cat-4' },
+  { id: 'tech-bokanovsky-process', name: 'Bokanovsky Process', category: 'cat-4' },
 ];
 
 const books = [
@@ -68,6 +92,9 @@ const books = [
   { id: 'book-foundation', title: 'Foundation', author: 'Isaac Asimov', techs: ['tech-psychohistory', 'tech-galactic-empire', 'tech-planetary-shields', 'tech-ftl'] },
   { id: 'book-solaris', title: 'Solaris', author: 'Stanislaw Lem', techs: ['tech-sentient-ocean', 'tech-xenobiology', 'tech-psionic-theory'] },
   { id: 'book-childhood', title: "Childhood's End", author: 'Arthur C. Clarke', techs: ['tech-overlords', 'tech-psionic-theory', 'tech-convergent-evolution'] },
+  { id: 'book-moon-mistress', title: 'The Moon is a Harsh Mistress', author: 'Robert A. Heinlein', techs: ['tech-mass-driver', 'tech-emergent-ai', 'tech-lunar-colony'] },
+  { id: 'book-brave-new-world', title: 'Brave New World', author: 'Aldous Huxley', techs: ['tech-bokanovsky-process', 'tech-hypnopaedia', 'tech-soma', 'tech-gene-tailoring'] },
+  { id: 'book-hitchhikers-guide', title: "The Hitchhiker's Guide to the Galaxy", author: 'Douglas Adams', techs: ['tech-improbability-drive', 'tech-babel-fish', 'tech-vogon-tech'] },
 
   // Modern Epics
   { id: 'book-hyperion', title: 'Hyperion', author: 'Dan Simmons', techs: ['tech-farcasters', 'tech-cruciform', 'tech-temporal-weapon', 'tech-sapient-ai'] },
@@ -81,12 +108,25 @@ const books = [
   // Post-Human & Consciousness
   { id: 'book-phlebas', title: 'Consider Phlebas', author: 'Iain M. Banks', techs: ['tech-culture-minds', 'tech-sapient-ai', 'tech-megastructures', 'tech-hyper-shields'] },
   { id: 'book-da', title: 'The Diamond Age', author: 'Neal Stephenson', techs: ['tech-nanotechnology', 'tech-matter-compilers', 'tech-sapient-ai', 'tech-virtual-reality'] },
+  { id: 'book-snow-crash', title: 'Snow Crash', author: 'Neal Stephenson', techs: ['tech-virtual-reality', 'tech-neural-implants', 'tech-nanotechnology'] },
   { id: 'book-accel', title: 'Accelerando', author: 'Charles Stross', techs: ['tech-singularity', 'tech-digital-consciousness', 'tech-nanotechnology'] },
   { id: 'book-pc', title: 'Permutation City', author: 'Greg Egan', techs: ['tech-digital-consciousness', 'tech-dust-theory', 'tech-virtual-reality'] },
   { id: 'book-diaspora', title: 'Diaspora', author: 'Greg Egan', techs: ['tech-the-polis', 'tech-digital-consciousness', 'tech-jump-drive', 'tech-dimensional-engineering'] },
+  { id: 'book-we-are-bob', title: 'We Are Legion (We Are Bob)', author: 'Dennis E. Taylor', techs: ['tech-von-neumann-probes', 'tech-digital-consciousness', 'tech-terraforming'] },
 
   // Hard Physics & Xenobiology
   { id: 'book-dragons-egg', title: 'Dragon\'s Egg', author: 'Robert L. Forward', techs: ['tech-neutron-star-life', 'tech-neutronium-matter', 'tech-relativistic-warfare', 'tech-xenobiology'] },
+  { id: 'book-project-hail-mary', title: 'Project Hail Mary', author: 'Andy Weir', techs: ['tech-astrophage', 'tech-xenobiology', 'tech-epstein-drive'] },
+  { id: 'book-the-martian', title: 'The Martian', author: 'Andy Weir', techs: ['tech-habitat-engineering', 'tech-terraforming', 'tech-epstein-drive'] },
+  { id: 'book-tau-zero', title: 'Tau Zero', author: 'Poul Anderson', techs: ['tech-bussard-ramjet', 'tech-time-dilation', 'tech-relativistic-warfare'] },
+  { id: 'book-schilds-ladder', title: 'Schild\'s Ladder', author: 'Greg Egan', techs: ['tech-quantum-graph-theory', 'tech-novacene-physics', 'tech-the-polis'] },
+
+  // Conceptual & Military SF
+  { id: 'book-fine-structure', title: 'Fine Structure', author: 'Sam Hughes', techs: ['tech-physics-as-interface', 'tech-sapient-ai', 'tech-virtual-reality'] },
+  { id: 'book-stories-of-your-life', title: 'Stories of Your Life', author: 'Ted Chiang', techs: ['tech-sapir-whorf', 'tech-nonlinear-time', 'tech-xenobiology'] },
+  { id: 'book-exhalation', title: 'Exhalation', author: 'Ted Chiang', techs: ['tech-entropy-and-will', 'tech-arrow-of-time', 'tech-digital-consciousness'] },
+  { id: 'book-antimemetics', title: 'There Is No Antimemetics Division', author: 'qntm', techs: ['tech-antimemetics', 'tech-info-hazards', 'tech-psionic-theory'] },
+  { id: 'book-enders-game', title: 'Ender\'s Game', author: 'Orson Scott Card', techs: ['tech-ansible', 'tech-doctor-device', 'tech-zero-g-combat', 'tech-relativistic-warfare'] },
 ];
 
 export const elements: cytoscape.ElementDefinition[] = [];
